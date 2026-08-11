@@ -1,0 +1,40 @@
+{
+  "name": "slideable",
+  "version": "0.1.0",
+  "description": "Build decks out of your own template library. The agent picks a layout and writes copy; it never sends geometry.",
+  "author": {
+    "name": "Slideable",
+    "url": "https://slideable.ai"
+  },
+  "homepage": "https://slideable.ai",
+  "repository": "https://github.com/M-alk/slideable-plugin",
+  "license": "UNLICENSED",
+  "keywords": ["slides", "presentations", "deck", "design"],
+  "mcpServers": {
+    "slideable": {
+      "command": "npx",
+      "args": ["-y", "slideable-mcp"]
+    }
+  },
+  "interface": {
+    "displayName": "Slideable",
+    "shortDescription": "Decks from your own templates",
+    "longDescription": "Slideable turns an outline into finished slides using a fixed layout library. The agent calls list_layouts, picks a layout id and supplies strings for that layout's named slots — position, size, colour, type scale and spacing stay owned by the templates, so a generated slide is identical to one built by hand. Every write is audited for overflow before it lands.",
+    "developerName": "Slideable",
+    "category": "productivity",
+    "capabilities": [
+      "Build a deck from an outline",
+      "Rewrite slides without touching the design",
+      "Translate a deck to Arabic with mirrored layout",
+      "Audit every slide for text overflow"
+    ],
+    "websiteURL": "https://slideable.ai",
+    "privacyPolicyURL": "https://slideable.ai/privacy",
+    "termsOfServiceURL": "https://slideable.ai/terms",
+    "defaultPrompt": [
+      "Build me a 6-slide quarterly review for a Dubai cafe chain.",
+      "Read the deck \"Q1 Review\" and tighten every headline to under six words.",
+      "Make that deck Arabic and mirror the layout."
+    ]
+  }
+}
