@@ -1,6 +1,6 @@
 {
   "name": "slideable",
-  "version": "0.1.0",
+  "version": "0.7.0",
   "description": "Build decks out of your own template library. The agent picks a layout and writes copy; it never sends geometry.",
   "author": {
     "name": "Slideable",
