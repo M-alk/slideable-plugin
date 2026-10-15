@@ -1,6 +1,6 @@
 {
   "name": "slideable",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Build decks out of your own template library. The agent picks a layout and writes copy; it never sends geometry.",
   "author": {
     "name": "Slideable",
@@ -9,11 +9,16 @@
   "homepage": "https://slideable.ai",
   "repository": "https://github.com/M-alk/slideable-plugin",
   "license": "UNLICENSED",
-  "keywords": ["slides", "presentations", "deck", "design"],
+  "keywords": [
+    "slides",
+    "presentations",
+    "deck",
+    "design"
+  ],
   "mcpServers": {
     "slideable": {
-      "command": "npx",
-      "args": ["-y", "slideable-mcp"]
+      "type": "http",
+      "url": "https://www.slideable.ai/mcp"
     }
   },
   "interface": {

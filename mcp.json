@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "slideable": {
+      "type": "http",
+      "url": "https://www.slideable.ai/mcp"
+    }
+  }
+}

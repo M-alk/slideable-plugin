@@ -1,64 +1,85 @@
 # Slideable — agent plugin
 
-Connects [Slideable](https://slideable.ai) to your coding agent, so it can build
-and edit decks out of your own template library.
+<img src="assets/logo.png" alt="Slideable" width="96" height="96">
+
+Connects [Slideable](https://slideable.ai) to your agent, so it can build and
+edit presentation decks out of a fixed template library.
+
+## Install
+
+**Grok Bot and Cursor** — install *Slideable* from the marketplace, or:
 
 ```bash
 npx plugins add M-alk/slideable-plugin
 ```
 
-That detects the agents you have installed — Claude Code, Codex, Cursor, VS
-Code, Copilot CLI and the rest — and adds Slideable to all of them.
+That detects the agents you have installed — Grok Bot, Cursor, Claude Code,
+Codex, VS Code, Copilot CLI and the rest — and adds Slideable to all of them.
 
-## What this repository is
+The first time a Slideable tool runs, your agent opens a browser window to sign
+in. Create a free account at [slideable.ai](https://slideable.ai/app) first if
+you do not have one. The decks the agent builds are the ones you see when you
+open the app.
 
-Two manifest files. That is the whole thing.
+## What is in the plugin
 
-The `plugins` CLI installs from a public git repository, so the manifests it
-reads have to live in one. They point at [`slideable-mcp`](https://www.npmjs.com/package/slideable-mcp)
-on npm, which is where the server itself is published. Slideable's source is not
-here and is not public.
+| | |
+| --- | --- |
+| `mcp.json` | The hosted MCP server, `https://www.slideable.ai/mcp`. Streamable HTTP, OAuth sign-in. |
+| `skills/deck-research` | Turns a topic, notes or a document into an outline before any slide exists. |
+| `skills/deck-build` | Builds the outline into a deck, then runs the overflow check and fixes what it finds. |
+| `skills/deck-review` | Critiques an existing deck — the layout and the argument — and fixes it. |
+| `skills/deck-translate` | Moves a deck between English and Arabic, mirroring the layout for right-to-left. |
 
-## Installing without the plugin
+## Try it
 
-Every client can also be pointed straight at the npm package.
+After installing, ask your agent:
+
+- *Build me a 6-slide quarterly review for a Dubai cafe chain.*
+- *Read the deck "Q1 Review" and tighten every headline to under six words.*
+- *Make that deck Arabic and mirror the layout.*
+
+Every write returns an audit; the agent fixes overflowing or low-contrast slides
+before it tells you the deck is done. Open [slideable.ai](https://slideable.ai/app)
+to see, present or export the result.
+
+## How it works
+
+The agent never sends geometry. It reads the layout catalogue (`list_layouts`),
+picks a layout id and supplies strings for that layout's named slots. Position,
+size, colour, type scale and spacing stay owned by the templates, so a generated
+slide is identical to one built by hand.
+
+## Adding the server without the plugin
+
+Any MCP client that speaks Streamable HTTP can use the URL directly.
 
 | Client | |
 | --- | --- |
-| Claude Code | `claude mcp add slideable -- npx -y slideable-mcp` |
-| Codex CLI | `codex mcp add slideable -- npx -y slideable-mcp` |
-| VS Code | `code --add-mcp '{"name":"slideable","command":"npx","args":["-y","slideable-mcp"]}'` |
-| Copilot CLI | `copilot mcp add` — interactive; the command is `npx -y slideable-mcp` |
+| Claude Code | `claude mcp add --transport http slideable https://www.slideable.ai/mcp` |
+| VS Code | `code --add-mcp '{"name":"slideable","type":"http","url":"https://www.slideable.ai/mcp"}'` |
 
-Cursor, Gemini CLI, Claude Desktop, Zed and Windsurf all read a config file:
+Grok Bot, Cursor, Claude Desktop, Windsurf and others read a config file:
 
 ```json
 {
   "mcpServers": {
     "slideable": {
-      "command": "npx",
-      "args": ["-y", "slideable-mcp"]
+      "url": "https://www.slideable.ai/mcp"
     }
   }
 }
 ```
 
-ChatGPT on the web is not supported yet. It reaches MCP only over hosted HTTP
-and cannot start a local process. Codex CLI is a separate product and works
-today.
+## Privacy and terms
 
-## What the agent can do
+[Privacy policy](https://slideable.ai/privacy) ·
+[Terms of service](https://slideable.ai/terms)
 
-Once connected it can read the layout catalogue, build a deck from an outline,
-rewrite slides without touching their design, switch a deck to Arabic with a
-mirrored layout, and audit every slide for text that overflows its box.
-
-It never sends geometry. It picks a layout id and supplies strings for that
-layout's named slots — position, size, colour, type scale and spacing stay owned
-by the templates, so a generated slide is identical to one built by hand.
+Once connected, the agent can see the decks in your library and create or edit
+decks. It never sees your password: sign-in happens on slideable.ai.
 
 ## Licence
 
-The manifests in this repository are published so the plugin installer can read
-them. Slideable itself is proprietary; nothing here grants a licence to the
-product or to the `slideable-mcp` package.
+The files in this repository are published so plugin installers can read them.
+Slideable itself is proprietary; nothing here grants a licence to the product.

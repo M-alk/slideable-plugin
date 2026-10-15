@@ -1,0 +1,23 @@
+{
+  "name": "slideable",
+  "version": "0.8.0",
+  "description": "Build presentation decks from a fixed template library. The agent picks a layout and writes the copy; position, colour and type stay owned by the templates, and every slide is checked for overflow.",
+  "author": {
+    "name": "Slideable"
+  },
+  "homepage": "https://slideable.ai",
+  "repository": "https://github.com/M-alk/slideable-plugin",
+  "license": "UNLICENSED",
+  "keywords": [
+    "slides",
+    "presentations",
+    "deck",
+    "pitch-deck",
+    "design",
+    "arabic",
+    "rtl"
+  ],
+  "logo": "assets/logo.svg",
+  "skills": "./skills/",
+  "mcpServers": "./mcp.json"
+}
